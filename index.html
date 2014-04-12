@@ -19,15 +19,23 @@
       <video id="video" src="Audi.mp4" type="video/mp4"></video>
     </div>
     <div id="top-bar">
-      <div id="#top-bar-bg"></div>
-      <div id="hamburger" class="fa fa-bars"><input type="text" id="where"/></div>
-      <div id="search-icon" class="fa fa-search">I'M AN ICON</div>
+      <div id="menu-button-container">
+        <div id="hamburger" class="menu-button fa fa-bars"></div>
+        <div id="menu-close" class="menu-button fa fa-angle-left"></div>
+      </div>
+      <div id="search-button" class="fa fa-search"></div>
+      <div id="search-text-container">
+        <input type="text" id="search-text" placeholder="Search...">
+      </div>
     </div>
     <div id="map-canvas-container">
       <div id="map-canvas"/>
     </div>
     <div id="directionsPanel-container">
       <div id="directionsPanel"/>
+    </div>
+    <div id="left-menu">
+      <div id="menu-one">Ohai</div>
     </div>
     <script src="utils.js"></script>
     <script src="main.js"></script>

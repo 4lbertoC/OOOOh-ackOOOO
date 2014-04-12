@@ -60,6 +60,10 @@
 		}
 	}
 
+	function onSearch(searchText) {
+		alert("Searching for " + searchText);
+	}
+
 	function updateMarkers(results, status) {
 	  	for (var i = 0; i < _markers.length; i++) {
     		_markers[i].setMap(null);
@@ -85,7 +89,7 @@
 	function calcRoute() {
 		//var start = document.getElementById("start").value;
 		var latLng = new google.maps.LatLng(_carX, _carY);
-	  	var end = $("#where").val();
+	  	var end = $("#search-text").val();
 	  	var request = {
 	    	origin:latLng,
 	    	destination:end,
@@ -99,6 +103,24 @@
 	}
 
 	function init() {
+		$('.loading').remove();
+		$(_mapCanvas).css("visibility", "visible");
+
+		$('.menu-button').click(function() {
+			$('body').toggleClass('show-menu');
+			$('#hamburger').toggle();
+			$('#menu-close').toggle();
+			$('#search-text-container').toggle();
+		})
+
+		$('#menu-one').click(function() {
+			alert('Ohai');
+		});
+
+		$('#search-button').click(function() {
+			onSearch($('#search-text').val());
+		});
+
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
 		
@@ -113,8 +135,6 @@
 		// });
 		// _video.play();
 
-		// $('.loading').remove();
-		// $(_mapCanvas).css("visibility", "visible");
 	}
 
 
