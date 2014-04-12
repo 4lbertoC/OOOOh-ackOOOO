@@ -10,10 +10,11 @@ body {
 
 #map-canvas {
 	height: 100%;
+	visibility: hidden;
 }
 
 .loading {
-	background: #FFF;
+	background: #000;
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -39,4 +40,9 @@ body {
   to {
     -webkit-transform: rotate(360deg);
   }
+}
+
+#video {
+	top: 10%;
+	width: 100%;
 }
