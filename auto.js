@@ -25,7 +25,10 @@
 			  	//alert(data);
 			  	console.log(data);
 			  },
-			  dataType: 'json'
+			  contentType: 'json',
+			  xhrFields: {
+			      withCredentials: false
+			  }
 			});
 
 		});
