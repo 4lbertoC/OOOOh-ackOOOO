@@ -27,7 +27,7 @@
 	    _marker = new google.maps.Marker({
 	    	position: _position,
 	    	map: _map,
-	    	icon: 'car.png'
+	    	icon: 'images/car.png'
 	    });
 
 	   	_service = new google.maps.places.PlacesService(_map);
@@ -108,7 +108,8 @@
 	function createMarker(location) {
 		var marker = new google.maps.Marker({
 	    	map: _map,
-	    	position: location
+	    	position: location,
+	    	icon: 'images/pin-elettrico-32.png'
 	  	});
 	  	_markers.push(marker);
 	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
@@ -123,15 +124,20 @@
 			$('#hamburger').toggle();
 			$('#menu-close').toggle();
 			$('#search-text-container').toggle();
+			$('#search-button').toggle();
 		})
 
 		$('#menu-one').click(function() {
 			alert('Ohai');
 		});
 
-		$('#search-button').click(function() {
-			onSearch($('#search-text').val());
+		$('#search-text').on('keypress', function(event) {
+			if(event.originalEvent && event.originalEvent.keyCode === 13)  {
+				search();
+			}
 		});
+
+		$('#search-button').click(search);
 
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
@@ -149,6 +155,9 @@
 
 	}
 
+	function search() {
+		onSearch($('#search-text').val());
+	}
 
 	init();
 })();
