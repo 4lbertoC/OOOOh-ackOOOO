@@ -30,13 +30,13 @@ video {
 <div id="splush">
 
 	
-    
+    $(window).on('load', function() { ... });
 </div>
 <script type="text/javascript">
-	(function splash(){
+	$(window).on('load', function(){
 		$('#splash').delay(3500).fadeOut(1500);
 		$('#splush').delay(4000).fadeIn(500);
-	})();
+	});
 </script>
 </body>
 </html>
