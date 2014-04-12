@@ -6,6 +6,7 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	font-family:AudiNormal;
 }
 
 #map-canvas {
@@ -45,4 +46,17 @@ body {
 #video {
 	top: 10%;
 	width: 100%;
+}
+
+@font-face {
+font-family: AudiNormal;
+src: url(bower_components/fonts/AudiTypeV03-ExtendedNormal.otf) format("opentype");
+font-weight:normal;
+font-style:normal;
+}
+@font-face {
+font-family: AudiBold;
+src: url(bower_components/fonts/AudiTypeV03-ExtendedBold.otf) format("opentype");
+font-weight:normal;
+font-style:normal;
 }

@@ -22,19 +22,17 @@ video {
 <body>
 
 <div id="splash">
-    <video autoplay>
+    <video id="viddeo" autoplay>
       <source src="Audi.mp4" type="video/mp4">
     Your browser does not support the video tag.
     </video>
 </div>    
 <div id="splush">
 
-	
-    $(window).on('load', function() { ... });
 </div>
 <script type="text/javascript">
-	$(window).on('load', function(){
-		$('#splash').delay(3500).fadeOut(1500);
+	$("#viddeo").on('ended', function(){
+		$('#splash').delay(500).fadeOut(1500);
 		$('#splush').delay(4000).fadeIn(500);
 	});
 </script>
