@@ -26,7 +26,8 @@
 
 	    _marker = new google.maps.Marker({
 	    	position: _position,
-	    	map: _map
+	    	map: _map,
+	    	icon: 'car.png'
 	    });
 
 		google.maps.event.addListener(_map, "click", function(event) {

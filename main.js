@@ -21,7 +21,8 @@
 
 	    _marker = new google.maps.Marker({
 	    	position: _position,
-	    	map: _map
+	    	map: _map,
+	    	icon: 'car.png'
 	    });
 	}
 
@@ -43,15 +44,15 @@
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
 		
-		$(_video).click(function() {
-			_video.play();
-		});
-		$(_video).on('ended', function() {
+		// $(_video).click(function() {
+		// 	_video.play();
+		// });
+		// $(_video).on('ended', function() {
 			setInterval(function() {
 				AudiHack.getPosition(onPosition);
 			}, POLL_INTERVAL);
-		});
-		_video.play();
+		// });
+		// _video.play();
 	}
 
 
