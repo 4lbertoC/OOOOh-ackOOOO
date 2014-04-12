@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Audi - Intro</title>
+<style>
+body {
+	margin:0;
+	padding:0;
+}
+video#splash {
+	margin:0;
+	padding:0;
+	height:100%;
+	width:100%;
+	
+}
+</style>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	function splash(){
+		$('#splash').delay(3000).fadeOut(1000);
+		$('#splush').delay(4000).fadeIn(500);
+	};
+</script>
+<video controls id="splash" autoplay>
+  <source src="Audi.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<div id="splush">
+
+
+</div>
+</body>
+</html>
