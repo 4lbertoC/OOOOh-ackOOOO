@@ -3,6 +3,7 @@
 	var _carX = 45.474;
 	var _carY = 9.186;
 	var _map;
+	var serverurl = "http://smartcities.herokuapp.com/positions"
 
 	function initialize() {
 	    var mapOptions = {
@@ -15,7 +16,18 @@
 		    var lat = event.latLng.lat();
 		    var lng = event.latLng.lng();
 		    // populate yor box/field with lat, lng
-		    alert("Lat=" + lat + "; Lng=" + lng);
+		    //alert("Lat=" + lat + "; Lng=" + lng);
+			$.ajax({
+			  type: "POST",
+			  url: serverurl,
+			  data: '{"lat": "' + lat + '", "lng" : "' + lng + '"}',
+			  success: function (data) {
+			  	//alert(data);
+			  	console.log(data);
+			  },
+			  dataType: 'json'
+			});
+
 		});
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
