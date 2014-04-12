@@ -7,7 +7,7 @@
 
 	function initialize() {
 	    var mapOptions = {
-	        center: ,
+	        center: _position,
 	        zoom: 15
 	    };
 	    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
