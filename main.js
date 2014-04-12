@@ -62,6 +62,19 @@
 
 	function onSearch(searchText) {
 		alert("Searching for " + searchText);
+		var latLng = new google.maps.LatLng(_carX, _carY);
+	  	var end = searchText;
+	  	var request = {
+	    	origin:latLng,
+	    	destination:end,
+	    	travelMode: google.maps.TravelMode.DRIVING
+	  	};
+	  	_directionsService.route(request, function(result, status) {
+	    	if (status == google.maps.DirectionsStatus.OK) {
+	    		alert("Rullo di tamburi...");
+	      		_directionsDisplay.setDirections(result);
+	    	}
+	  	});
 	}
 
 	function updateMarkers(results, status) {
@@ -84,22 +97,6 @@
 	    	position: place.geometry.location
 	  	});
 	  	_markers.push(marker);
-	}
-
-	function calcRoute() {
-		//var start = document.getElementById("start").value;
-		var latLng = new google.maps.LatLng(_carX, _carY);
-	  	var end = $("#search-text").val();
-	  	var request = {
-	    	origin:latLng,
-	    	destination:end,
-	    	travelMode: google.maps.TravelMode.DRIVING
-	  	};
-	  	_directionsService.route(request, function(result, status) {
-	    	if (status == google.maps.DirectionsStatus.OK) {
-	      		_directionsDisplay.setDirections(result);
-	    	}
-	  	});
 	}
 
 	function init() {
@@ -139,6 +136,4 @@
 
 
 	init();
-	
-	$("#search-icon").click(calcRoute);
 })();
