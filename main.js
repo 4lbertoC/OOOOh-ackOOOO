@@ -17,7 +17,8 @@
 	function initializeGoogleMaps() {
 	    var mapOptions = {
 	        center: _position,
-	        zoom: 15
+	        zoom: 15,
+	    	disableDefaultUI: true
 	    };
 	    _map = new google.maps.Map(_mapCanvas, mapOptions);
 
@@ -86,6 +87,9 @@
 			}, POLL_INTERVAL);
 		// });
 		// _video.play();
+
+		// $('.loading').remove();
+		// $(_mapCanvas).css("visibility", "visible");
 	}
 
 

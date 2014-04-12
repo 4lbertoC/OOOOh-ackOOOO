@@ -1,3 +1,7 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
 html {
 	height: 100%;
 }
@@ -6,6 +10,12 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+#map-canvas-container {
+	padding-top: 50px;
+	width: 100%;
+	height: 100%;
 }
 
 #map-canvas {
@@ -45,4 +55,34 @@ body {
 #video {
 	top: 10%;
 	width: 100%;
+}
+
+#top-bar {
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #CCC;
+	position: absolute;
+	top: 0;
+}
+
+#top-bar-bg {
+	background: url(audi_logo.jpg) no-repeat;
+	background-position: 50% 50%;
+	opacity: 50%;
+}
+
+#search-icon {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	color: red;
+	font-size: 25px;
+}
+
+#hamburger {
+	position: absolute;
+	left: 12px;
+	top: 12px;
+	color: red;
+	font-size: 25px;
 }
