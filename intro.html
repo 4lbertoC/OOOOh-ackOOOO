@@ -7,30 +7,36 @@ body {
 	margin:0;
 	padding:0;
 }
-video#splash {
+#splash {
+	background-color:#000000;
+}
+video {
 	margin:0;
 	padding:0;
 	height:100%;
 	width:100%;
-	
 }
 </style>
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-	function splash(){
-		$('#splash').delay(3000).fadeOut(1000);
-		$('#splush').delay(4000).fadeIn(500);
-	};
-</script>
-<video controls id="splash" autoplay>
-  <source src="Audi.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+
+<div id="splash">
+    <video autoplay>
+      <source src="Audi.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
+</div>    
 <div id="splush">
 
-
+	
+    
 </div>
+<script type="text/javascript">
+	(function splash(){
+		$('#splash').delay(3500).fadeOut(1500);
+		$('#splush').delay(4000).fadeIn(500);
+	})();
+</script>
 </body>
 </html>
