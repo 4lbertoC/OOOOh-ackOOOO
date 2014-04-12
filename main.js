@@ -73,30 +73,45 @@
 	    	if (status == google.maps.DirectionsStatus.OK) {
 	    		alert("Rullo di tamburi...");
 	      		_directionsDisplay.setDirections(result);
+	      		showSteps(result);
 	    	}
 	  	});
 	}
 
 	function updateMarkers(results, status) {
-	  	for (var i = 0; i < _markers.length; i++) {
-    		_markers[i].setMap(null);
-  	  	}
-  	  	_markers = [];
+	  	
+	// 		for (var i = 0; i < _markers.length; i++) {
+    // 			_markers[i].setMap(null);
+  	//  	}
+  	//  	_markers = [];
+
 	  	if (status == google.maps.places.PlacesServiceStatus.OK) {
 	    	for (var i = 0; i < results.length; i++) {
-	      		var place = results[i];
-	      		createMarker(results[i]);
+			  	createMarker(results[i].geometry.location);
     		}
 	  	}
 	}
 
-	function createMarker(place) {
-	  	var placeLoc = place.geometry.location;
-	  	var marker = new google.maps.Marker({
+
+	function showSteps(directionResult) {
+	  	// For each step, place a marker, and add the text to the marker's
+	  	// info window. Also attach the marker to an array so we
+	  	// can keep track of it and remove it when calculating new
+	  	// routes.
+		var myRoute = directionResult.routes[0].legs[0];
+
+	  	for (var i = 0; i < myRoute.steps.length; i++) {
+	  		createMarker(myRoute.steps[i].start_location);
+	  	}
+	}
+
+	function createMarker(location) {
+		var marker = new google.maps.Marker({
 	    	map: _map,
-	    	position: place.geometry.location
+	    	position: location
 	  	});
 	  	_markers.push(marker);
+	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
 	}
 
 	function init() {
