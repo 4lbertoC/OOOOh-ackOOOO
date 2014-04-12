@@ -10,9 +10,9 @@
 	        center: _position,
 	        zoom: 15
 	    };
-	    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+	    _map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-		google.maps.event.addListener(map, "click", function(event) {
+		google.maps.event.addListener(_map, "click", function(event) {
 		    var lat = event.latLng.lat();
 		    var lng = event.latLng.lng();
 		    // populate yor box/field with lat, lng
@@ -29,9 +29,10 @@
 		$('.loading').remove();
 
 		setInterval(function() {
-			_carX += 1;
-			map.setOptions({
-				center: new goo
+			_carX += 0.005;
+			// _position.setPosition(_carX, _carY);
+			_map.setOptions({
+				center: new google.maps.LatLng(_carX, _carY)
 			})
 		}, 1000);
 	}
