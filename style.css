@@ -2,6 +2,10 @@
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
+*:focus {
+    outline: 0;
+}
+
 html {
 	height: 100%;
 }
@@ -66,13 +70,7 @@ body {
 	top: 0;
 }
 
-#top-bar-bg {
-	background: url(audi_logo.jpg) no-repeat;
-	background-position: 50% 50%;
-	opacity: 50%;
-}
-
-#search-icon {
+#search-button {
 	position: absolute;
 	right: 12px;
 	top: 12px;
@@ -80,24 +78,61 @@ body {
 	font-size: 25px;
 }
 
-#hamburger {
+#menu-button-container {
+	-webkit-transition: 500ms;
 	position: absolute;
 	left: 12px;
 	top: 12px;
+}
+
+#hamburger, #menu-close {
 	color: red;
 	font-size: 25px;
 }
 
 @font-face {
-font-family: AudiNormal;
-src: url(bower_components/fonts/AudiTypeV03-ExtendedNormal.otf) format("opentype");
-font-weight:normal;
-font-style:normal;
+	font-family: AudiNormal;
+	src: url(fonts/AudiTypeV03-ExtendedNormal.otf) format("opentype");
+	font-weight:normal;
+	font-style:normal;
 }
 
 @font-face {
-font-family: AudiBold;
-src: url(bower_components/fonts/AudiTypeV03-ExtendedBold.otf) format("opentype");
-font-weight:normal;
-font-style:normal;
+	font-family: AudiBold;
+	src: url(fonts/AudiTypeV03-ExtendedBold.otf) format("opentype");
+	font-weight:normal;
+	font-style:normal;
+}
+
+#menu-close {
+	display: none;
+}
+
+#left-menu {
+	height: 100%;
+	width: 200px;
+	background: red;
+	color: white;
+	position: fixed;
+	top: 0;
+	left: -200px;
+	-webkit-transition: 500ms;
+	padding: 50px 0 0 20px;
+}
+
+.show-menu #left-menu, .show-menu #menu-button-container {
+	-webkit-transform: translateX(200px);
+}
+
+#search-text-container {
+	width: 100%;
+	padding: 0 50px;
+	margin-top: 10px;
+}
+
+#search-text {
+	font-size: 1.2em;
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #EEE;
 }
