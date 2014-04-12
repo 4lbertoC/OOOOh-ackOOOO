@@ -12,7 +12,9 @@
 		_position,
 		_video = document.getElementById('video'),
 		_service,
-		_markers = [];
+		_markers = [],
+		_directionsService,
+		_directionsDisplay;
 
 	function initializeGoogleMaps() {
 	    var mapOptions = {
@@ -29,6 +31,12 @@
 	    });
 
 	   	_service = new google.maps.places.PlacesService(_map);
+		
+		_directionsService = new google.maps.DirectionsService();
+
+	   	_directionsDisplay = new google.maps.DirectionsRenderer();
+	   	_directionsDisplay.setMap(_map);
+	   	_directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 	}
 
 	function onPosition(position) {
@@ -74,6 +82,22 @@
 	  	_markers.push(marker);
 	}
 
+	function calcRoute() {
+		//var start = document.getElementById("start").value;
+		var latLng = new google.maps.LatLng(_carX, _carY);
+	  	var end = $("#where").val();
+	  	var request = {
+	    	origin:latLng,
+	    	destination:end,
+	    	travelMode: google.maps.TravelMode.DRIVING
+	  	};
+	  	_directionsService.route(request, function(result, status) {
+	    	if (status == google.maps.DirectionsStatus.OK) {
+	      		_directionsDisplay.setDirections(result);
+	    	}
+	  	});
+	}
+
 	function init() {
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
@@ -85,6 +109,7 @@
 			setInterval(function() {
 				AudiHack.getPosition(onPosition);
 			}, POLL_INTERVAL);
+
 		// });
 		// _video.play();
 
@@ -94,4 +119,6 @@
 
 
 	init();
+	
+	$("#search-icon").click(calcRoute);
 })();
