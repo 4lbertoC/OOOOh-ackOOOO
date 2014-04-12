@@ -13,8 +13,30 @@ body {
 }
 
 .loading {
-	background: #EEE;
+	background: #FFF;
 	width: 100%;
 	height: 100%;
 	position: fixed;
+}
+
+.loadIcon {
+	width: 100%;
+	height: 100%;
+	background-image: url(loading.png);
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	-webkit-animation-name: loadAnim;
+	-webkit-animation-duration: 2s;
+	-webkit-transition: 1s;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes loadAnim {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
