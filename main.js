@@ -10,7 +10,9 @@
 		_carY = 9.186,
 		_car,
 		_position,
-		_video = document.getElementById('video');
+		_video = document.getElementById('video'),
+		_service,
+		_markers = [];
 
 	function initializeGoogleMaps() {
 	    var mapOptions = {
@@ -24,6 +26,8 @@
 	    	map: _map,
 	    	icon: 'car.png'
 	    });
+
+	   	_service = new google.maps.places.PlacesService(_map);
 	}
 
 	function onPosition(position) {
@@ -37,7 +41,36 @@
 			_map.setOptions({
 				center: latLng
 			});
+
+			var request = {
+			    location: latLng,
+			    radius: '500',
+			    types: ['store']
+			};
+		  	_service.nearbySearch(request, updateMarkers);
 		}
+	}
+
+	function updateMarkers(results, status) {
+	  	for (var i = 0; i < _markers.length; i++) {
+    		_markers[i].setMap(null);
+  	  	}
+  	  	_markers = [];
+	  	if (status == google.maps.places.PlacesServiceStatus.OK) {
+	    	for (var i = 0; i < results.length; i++) {
+	      		var place = results[i];
+	      		createMarker(results[i]);
+    		}
+	  	}
+	}
+
+	function createMarker(place) {
+	  	var placeLoc = place.geometry.location;
+	  	var marker = new google.maps.Marker({
+	    	map: _map,
+	    	position: place.geometry.location
+	  	});
+	  	_markers.push(marker);
 	}
 
 	function init() {
