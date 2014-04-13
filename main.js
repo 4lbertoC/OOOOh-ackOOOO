@@ -211,6 +211,10 @@
 		$('.mock-pin-info').click(function() {
 			navigateTo(_currentMarkerX, _currentMarkerY);
 		});
+		$('.direction-info-hide-button').click(function() {
+			$('#direction-info').toggleClass('hide-me');
+		});
+		$('.mock-direction-info').click(navigate);
 
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
@@ -237,6 +241,8 @@
 		_directionsDisplay.setMap(_map);
 		onSearch(_lastSearch);
 		$('#reset-query').show();
+		$('body').addClass('show-direction-info');
+		$('#search-text').blur();
 	}
 
 	function startWithVideo() {
@@ -269,6 +275,8 @@
 		$('#linguetta').hide();
 		$('#reset-query').hide();
 		$('body').removeClass('show-directions');
+		$('body').removeClass('show-direction-info');
+		$('#direction-info').removeClass('hide-me');
 		$('#search-text').val('');
 		_lastSearch = '';
 		_map.setOptions({
