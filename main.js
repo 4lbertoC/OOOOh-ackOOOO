@@ -54,7 +54,7 @@
 
 			var request = {
 			    location: latLng,
-			    radius: '500',
+			    radius: '1000',
 			    types: ['store']
 			};
 		  	_service.nearbySearch(request, updateMarkers);
@@ -119,7 +119,8 @@
 	function createNearbyMarker(location) {
 		var marker = new google.maps.Marker({
 	    	map: _map,
-	    	position: location
+	    	position: location,
+	    	icon: 'images/pin-elettrico-48.png'
 	  	});
 	  	_nearby_markers.push(marker);
 	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
