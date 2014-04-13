@@ -219,8 +219,8 @@
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
 		
-		// startWithVideo();
-		startWithoutVideo();
+		startWithVideo();
+		// startWithoutVideo();
 
 	}
 
