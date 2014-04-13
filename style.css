@@ -205,7 +205,7 @@ body {
 	top: -40px;
 	border-radius: 5px;
 	background: white;
-	border: 1px solid #A5A5A5;
+	border: 1px solid red;
 	width: 48px;
 	height: 48px;
 	text-align: center;
@@ -225,7 +225,7 @@ body {
 	top: 3px;
 	border-radius: 5px;
 	background: white;
-	border: 1px solid #A5A5A5;
+	border: 1px solid red;
 }
 
 #directionsPanel-container {
@@ -246,18 +246,10 @@ body {
 	display: none;
 }
 
-#center-button > .fa-plus {
-	position: absolute;
-	top: 8px;
-	left: 10px;
-	font-size: 32px;
-}
-
-#center-button > .fa-circle {
-	position: absolute;
-	top: 12px;
-	font-size: 23px;
-	left: 13px;
+#center-button > img {
+	width: 32px;
+	position: relative;
+	top: -2px;
 }
 
 .popup {
@@ -285,4 +277,58 @@ body {
 .popup-2 {
 	color: red;
 	font-size: 55px;
+	position: relative;
+	top: -5px;
+}
+
+#right-panel {
+	height: 100%;
+	width: 100%;
+	background: white;
+	color: black;
+	position: fixed;
+	top: 50px;
+	left: 100%;
+	/*left: 0;*/
+	-webkit-transition: 500ms;
+	padding: 70px 0 0 20px;
+	border-left: 1px solid #A5A5A5;
+}
+
+.show-right-panel #right-panel {
+	-webkit-transform: translateX(-100%);
+}
+
+.right-panel-top-nav {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#right-menu-button-container {
+	-webkit-transition: 500ms;
+	position: absolute;
+	left: 12px;
+	top: 12px;
+}
+
+#right-panel-close {
+	color: red;
+	font-size: 25px;
+	display: inline-block;
+}
+
+.info-container {
+	overflow: scroll;
+	height: 100%;
+	padding-left: 40px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.mock-pin-info {
+	width:100%;
 }

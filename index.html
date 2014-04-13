@@ -8,7 +8,7 @@
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script type="text/javascript"
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaSioXD7BS6T1ZGvIDO2Ra4h45A_B7N_w&sensor=false&libraries=places">
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaSioXD7BS6T1ZGvIDO2Ra4h45A_B7N_w&sensor=false&libraries=places">
         </script>
     </head>
     <body>
@@ -28,13 +28,26 @@
             </div>
             <div id="directionsPanel-container">
                 <div id="linguetta">
-                  <span class="fa fa-road"></span>
+                    <span class="fa fa-road"></span>
                 </div>
                 <div id="directionsPanel"/>
                 </div>
                 <div id="navigation">
-                  <span class="fa fa-location-arrow"></span>
+                    <span class="fa fa-location-arrow"></span>
                 </div>
+            </div>
+        </div>
+        <div id="center-button">
+            <img src="images/mirino-64.png">
+        </div>
+        <div id="right-panel">
+            <div class="right-panel-top-nav">
+                <div id="right-menu-button-container">
+                    <div id="right-panel-close" class="fa fa-angle-left"></div>
+                </div>
+            </div>
+            <div class="info-container">
+              <img src="images/mock_pin_info.jpg" class="mock-pin-info">
             </div>
         </div>
         <div id="left-menu">
@@ -45,10 +58,6 @@
             <div class="separator"></div>
             <div id="menu-trofei" class="menu-option"><img class="menu-option-icon" src="images/icona-trofeo.png"><div class="menu-option-text">Trofei</div></div>
             <div class="separator"></div>
-        </div>
-        <div id="center-button">
-          <span class="fa fa-plus"></span>
-          <span class="fa fa-circle"></span>
         </div>
         <div class="loading">
         <video id="video" src="Audi.mp4" type="video/mp4"></video>

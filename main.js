@@ -23,7 +23,9 @@
 		_directionsService,
 		_directionsDisplay,
 		_stepDisplay,
-		_lastSearch = '';
+		_lastSearch = '',
+		_currentMarkerX,
+		_currentMarkerY;
 
 	function initializeGoogleMaps() {
 	    _map = new google.maps.Map(_mapCanvas, _mapOptions);
@@ -144,7 +146,7 @@
 	function generatePopupText(distance, duration) {
 		return '<div class="popup"><img src="images/elettrica-64.png" class="popup-0">' +
 			'<div class="popup-1">' + distance + '<br/>' + duration + '</div>' +
-			'<div class="popup-2"><span class="fa fa-angle-right"></div></div>'
+			'<div class="popup-2"><span class="fa fa-angle-right"></div></div>';
 	}
 
 	function attachInfo(marker) {
@@ -167,9 +169,16 @@
 
 		 			_stepDisplay.setContent(text);
 			    	_stepDisplay.open(_map, marker);
+			    	_currentMarkerX = marker.getPosition().lat();
+			    	_currentMarkerY = marker.getPosition().lng();
+		      		$('.popup-2').click(showRightPanel);
 		    	}
 		  	});
 	  	});
+	}
+
+	function showRightPanel() {
+		$('body').addClass('show-right-panel');
 	}
 
 	function init() {
@@ -196,6 +205,12 @@
 		$('#linguetta').click(toggleDirections);
 		$('#reset-query').click(restart);
 		$('#navigation').click(navigate);
+		$('#right-menu-button-container').click(function() {
+			$('body').removeClass('show-right-panel');
+		});
+		$('.mock-pin-info').click(function() {
+			navigateTo(_currentMarkerX, _currentMarkerY);
+		});
 
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
@@ -211,6 +226,10 @@
 
 	function navigate() {
 		window.open('http://www.google.com/maps/dir/' + _carX + ',' + _carY + '/' + _lastSearch);
+	}
+
+	function navigateTo(x, y) {
+		window.open('http://www.google.com/maps/dir/' + _carX + ',' + _carY + '/' + x + ',' + y);
 	}
 
 	function search() {
