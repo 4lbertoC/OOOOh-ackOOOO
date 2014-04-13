@@ -13,6 +13,7 @@
 		_video = document.getElementById('video'),
 		_service,
 		_markers = [],
+		_nearby_markers = [],
 		_directionsService,
 		_directionsDisplay;
 
@@ -61,7 +62,7 @@
 	}
 
 	function onSearch(searchText) {
-		alert("Searching for " + searchText);
+		//alert("Searching for " + searchText);
 		var latLng = new google.maps.LatLng(_carX, _carY);
 	  	var end = searchText;
 	  	var request = {
@@ -71,7 +72,7 @@
 	  	};
 	  	_directionsService.route(request, function(result, status) {
 	    	if (status == google.maps.DirectionsStatus.OK) {
-	    		alert("Rullo di tamburi...");
+	    		//alert("Rullo di tamburi...");
 	      		_directionsDisplay.setDirections(result);
 	      		showSteps(result);
 	    	}
@@ -80,14 +81,14 @@
 
 	function updateMarkers(results, status) {
 	  	
-	// 		for (var i = 0; i < _markers.length; i++) {
-    // 			_markers[i].setMap(null);
-  	//  	}
-  	//  	_markers = [];
+		for (var i = 0; i < _nearby_markers.length; i++) {
+    		_nearby_markers[i].setMap(null);
+  	 	}
+  	 	_nearby_markers = [];
 
 	  	if (status == google.maps.places.PlacesServiceStatus.OK) {
 	    	for (var i = 0; i < results.length; i++) {
-			  	createMarker(results[i].geometry.location);
+			  	createNearbyMarker(results[i].geometry.location);
     		}
 	  	}
 	}
@@ -111,6 +112,15 @@
 	    	position: location
 	  	});
 	  	_markers.push(marker);
+	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
+	}
+
+	function createNearbyMarker(location) {
+		var marker = new google.maps.Marker({
+	    	map: _map,
+	    	position: location
+	  	});
+	  	_nearby_markers.push(marker);
 	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
 	}
 
