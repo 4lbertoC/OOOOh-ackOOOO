@@ -4,6 +4,11 @@
 		CAR_POSITION_REQUEST = "http://smartcities.herokuapp.com/positions";
 
 	var _map,
+		_mapOptions = {
+	        center: _position,
+	        zoom: 15,
+	    	disableDefaultUI: true
+	    },
 		_marker,
 		_mapCanvas = document.getElementById("map-canvas"),
 		_carX = 45.474,
@@ -19,12 +24,7 @@
 		_directionsDisplay;
 
 	function initializeGoogleMaps() {
-	    var mapOptions = {
-	        center: _position,
-	        zoom: 15,
-	    	disableDefaultUI: true
-	    };
-	    _map = new google.maps.Map(_mapCanvas, mapOptions);
+	    _map = new google.maps.Map(_mapCanvas, _mapOptions);
 
 	    _marker = new google.maps.Marker({
 	    	position: _position,
@@ -41,13 +41,15 @@
 	   	_directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 	}
 
-	function onPosition(position) {
-		if(+position.lng !== _carY || +position.lat !== _carX) {
-			$('.loading').remove();
+	function onPosition(position, force) {
+		if((force !== 'success' && force) || (+position.lng !== _carY || +position.lat !== _carX)) {
+			$('.loading').fadeOut(1000, function() {
+					$('.loading').remove();
+				});
 			$(_mapCanvas).css("visibility", "visible");
 			_carX = +position.lat;
 			_carY = +position.lng;
-			var latLng = new google.maps.LatLng(_carX, _carY);
+			var latLng = _position = new google.maps.LatLng(_carX, _carY);
 			_marker.setPosition(latLng);
 			_map.setOptions({
 				center: latLng
@@ -64,7 +66,7 @@
 
 	function onSearch(searchText) {
 		//alert("Searching for " + searchText);
-		var latLng = new google.maps.LatLng(_carX, _carY);
+		var latLng = _position = new google.maps.LatLng(_carX, _carY);
 	  	var end = searchText;
 	  	var request = {
 	    	origin:latLng,
@@ -110,6 +112,7 @@
 	  	for (var i = 0; i < myRoute.steps.length; i++) {
 	  		createMarker(myRoute.steps[i].start_location);
 	  	}
+		$('#linguetta').show();
 	}
 
 	function createMarker(location) {
@@ -133,9 +136,6 @@
 	}
 
 	function init() {
-		// $('.loading').remove();
-		// $(_mapCanvas).css("visibility", "visible");
-
 		$('.menu-button').click(function() {
 			$('body').toggleClass('show-menu');
 			$('#hamburger').toggle();
@@ -155,10 +155,27 @@
 		});
 
 		$('#search-button').click(search);
+		$('#center-button').click(center);
+		$('#linguetta').click(function() {
+			$('body').toggleClass('show-directions');
+		});
+		$('#reset-query').click(restart);
 
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
 		
+		// startWithVideo();
+		startWithoutVideo();
+
+	}
+
+	function search() {
+		_directionsDisplay.setMap(_map);
+		onSearch($('#search-text').val());
+		$('#reset-query').show();
+	}
+
+	function startWithVideo() {
 		$(_video).css("top",((window.innerHeight - $(_video).height()) / 2) + "px");
 		$(_video).click(function() {
 			_video.play();
@@ -169,11 +186,34 @@
 			}, POLL_INTERVAL);
 		});
 		_video.play();
-
 	}
 
-	function search() {
-		onSearch($('#search-text').val());
+	function startWithoutVideo() {
+		$('.loading').remove();
+		$(_mapCanvas).css("visibility", "visible");
+		setInterval(function() {
+			AudiHack.getPosition(onPosition);
+		}, POLL_INTERVAL);
+	}
+
+	function restart() {
+		$.each(_markers, function(i) { _markers[i].setMap(null) });
+		_directionsDisplay.setMap(null);
+		$('#linguetta').hide();
+		$('#reset-query').hide();
+		$('body').removeClass('show-directions');
+		_map.setOptions({
+			center: _position,
+			zoom: 15
+		});
+		AudiHack.getPosition(onPosition, true);
+	}
+
+	function center() {
+		_map.setOptions({
+			center: _position,
+			zoom: 15
+		});
 	}
 
 	init();
