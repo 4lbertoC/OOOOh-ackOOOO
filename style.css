@@ -211,6 +211,20 @@ body {
 	z-index: 1;
 }
 
+#navigation {
+	position: absolute;
+	right: 12px;
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	font-size: 25px;
+	z-index: 3;
+	top: 3px;
+	border-radius: 5px;
+	background: white;
+	border: 1px solid #A5A5A5;
+}
+
 #directionsPanel-container {
 	-webkit-transition: 500ms;
 	background: #FFF;
