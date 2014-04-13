@@ -22,7 +22,8 @@
 		_waypts = [],
 		_directionsService,
 		_directionsDisplay,
-		_stepDisplay;
+		_stepDisplay,
+		_lastSearch = '';
 
 	function initializeGoogleMaps() {
 	    _map = new google.maps.Map(_mapCanvas, _mapOptions);
@@ -186,10 +187,9 @@
 
 		$('#search-button').click(search);
 		$('#center-button').click(center);
-		$('#linguetta').click(function() {
-			$('body').toggleClass('show-directions');
-		});
+		$('#linguetta').click(toggleDirections);
 		$('#reset-query').click(restart);
+		$('#navigation').click(navigate);
 
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
@@ -199,9 +199,18 @@
 
 	}
 
+	function toggleDirections() {
+		$('body').toggleClass('show-directions');
+	}
+
+	function navigate() {
+		window.open('http://www.google.com/maps/dir/' + _carX + ',' + _carY + '/' + _lastSearch);
+	}
+
 	function search() {
+		_lastSearch = $('#search-text').val();
 		_directionsDisplay.setMap(_map);
-		onSearch($('#search-text').val());
+		onSearch(_lastSearch);
 		$('#reset-query').show();
 	}
 
@@ -229,9 +238,14 @@
 	function restart() {
 		$.each(_markers, function(i) { _markers[i].setMap(null) });
 		_directionsDisplay.setMap(null);
+	  	_directionsDisplay = new google.maps.DirectionsRenderer();
+	   	_directionsDisplay.setMap(_map);
+	   	_directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 		$('#linguetta').hide();
 		$('#reset-query').hide();
 		$('body').removeClass('show-directions');
+		$('#search-text').val('');
+		_lastSearch = '';
 		_map.setOptions({
 			center: _position,
 			zoom: 15
