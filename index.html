@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaSioXD7BS6T1ZGvIDO2Ra4h45A_B7N_w&sensor=false&libraries=places">
-    </script>
-  </head>
-  <body>
-    <div class="loading">
-      <video id="video" src="Audi.mp4" type="video/mp4"></video>
-    </div>
-    <div id="top-bar">
-      <div id="menu-button-container">
-        <div id="hamburger" class="menu-button fa fa-bars"></div>
-        <div id="menu-close" class="menu-button fa fa-angle-left"></div>
-      </div>
-      <div id="search-button" class="fa fa-search"></div>
-      <div id="search-text-container">
-        <input type="text" id="search-text" placeholder="Search...">
-      </div>
-    </div>
-    <div id="map-canvas-container">
-      <div id="map-canvas"/>
-    </div>
-    <div id="directionsPanel-container">
-      <div id="directionsPanel"/>
-    </div>
-    <div id="left-menu">
-      <img id="app-logo" src="images/logo-app.svg">
-      <div id="menu-account" class="menu-option"><img class="menu-option-icon" src="images/icona-utente.png"><div class="menu-option-text">Account</div></div>
-      <div class="separator"></div>
-      <div id="menu-preferiti" class="menu-option"><img class="menu-option-icon" src="images/icona-stella.png"><div class="menu-option-text">Preferiti</div></div>
-      <div class="separator"></div>
-      <div id="menu-trofei" class="menu-option"><img class="menu-option-icon" src="images/icona-trofeo.png"><div class="menu-option-text">Trofei</div></div>
-      <div class="separator"></div>
-    </div>
-    <script src="utils.js"></script>
-    <script src="main.js"></script>
-  </body>
-</html>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaSioXD7BS6T1ZGvIDO2Ra4h45A_B7N_w&sensor=false&libraries=places">
+        </script>
+    </head>
+    <body>
+        <div id="top-bar">
+            <div id="menu-button-container">
+                <div id="hamburger" class="menu-button fa fa-bars"></div>
+                <div id="menu-close" class="menu-button fa fa-angle-left"></div>
+            </div>
+            <div id="search-button" class="fa fa-search"></div>
+            <div id="search-text-container">
+                <input type="text" id="search-text" placeholder="Search...">
+            </div>
+        </div>
+        <div class="loading">
+          <video id="video" src="Audi.mp4" type="video/mp4"></video>
+        </div>
+        <div id="map-canvas-container">
+            <div id="map-canvas"/>
+            </div>
+            <div id="directionsPanel-container">
+                <div id="directionsPanel"/>
+                </div>
+                <div id="left-menu">
+                    <img id="app-logo" src="images/logo-app.svg">
+                    <div id="menu-account" class="menu-option"><img class="menu-option-icon" src="images/icona-utente.png"><div class="menu-option-text">Account</div></div>
+                    <div class="separator"></div>
+                    <div id="menu-preferiti" class="menu-option"><img class="menu-option-icon" src="images/icona-stella.png"><div class="menu-option-text">Preferiti</div></div>
+                    <div class="separator"></div>
+                    <div id="menu-trofei" class="menu-option"><img class="menu-option-icon" src="images/icona-trofeo.png"><div class="menu-option-text">Trofei</div></div>
+                    <div class="separator"></div>
+                </div>
+                <script src="utils.js"></script>
+                <script src="main.js"></script>
+            </body>
+        </html>

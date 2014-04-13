@@ -58,8 +58,8 @@ body {
 }
 
 #video {
-	top: 10%;
 	width: 100%;
+	position: relative;
 }
 
 #top-bar {

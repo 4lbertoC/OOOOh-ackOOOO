@@ -109,15 +109,15 @@
 		var marker = new google.maps.Marker({
 	    	map: _map,
 	    	position: location,
-	    	icon: 'images/pin-elettrico-32.png'
+	    	icon: 'images/pin-elettrico-48.png'
 	  	});
 	  	_markers.push(marker);
 	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
 	}
 
 	function init() {
-		$('.loading').remove();
-		$(_mapCanvas).css("visibility", "visible");
+		// $('.loading').remove();
+		// $(_mapCanvas).css("visibility", "visible");
 
 		$('.menu-button').click(function() {
 			$('body').toggleClass('show-menu');
@@ -142,16 +142,16 @@
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
 		
-		// $(_video).click(function() {
-		// 	_video.play();
-		// });
-		// $(_video).on('ended', function() {
+		$(_video).css("top",((window.innerHeight - $(_video).height()) / 2) + "px");
+		$(_video).click(function() {
+			_video.play();
+		});
+		$(_video).on('ended', function() {
 			setInterval(function() {
 				AudiHack.getPosition(onPosition);
 			}, POLL_INTERVAL);
-
-		// });
-		// _video.play();
+		});
+		_video.play();
 
 	}
 
