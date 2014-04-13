@@ -215,6 +215,9 @@
 			$('#direction-info').toggleClass('hide-me');
 		});
 		$('.mock-direction-info').click(navigate);
+		$('.car-option').click(function() {
+			$('.car-selection').remove();
+		});
 
 		_position = new google.maps.LatLng(_carX, _carY);
 		google.maps.event.addDomListener(window, 'load', initializeGoogleMaps);
