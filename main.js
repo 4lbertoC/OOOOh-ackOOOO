@@ -14,6 +14,7 @@
 		_service,
 		_markers = [],
 		_nearby_markers = [],
+		_waypts = [],
 		_directionsService,
 		_directionsDisplay;
 
@@ -68,6 +69,8 @@
 	  	var request = {
 	    	origin:latLng,
 	    	destination:end,
+	    	waypoints: _waypts,
+      		optimizeWaypoints: true,
 	    	travelMode: google.maps.TravelMode.DRIVING
 	  	};
 	  	_directionsService.route(request, function(result, status) {
@@ -77,6 +80,9 @@
 	      		showSteps(result);
 	    	}
 	  	});
+
+	  	// reset waypts 
+	  	_waypts = [];
 	}
 
 	function updateMarkers(results, status) {
