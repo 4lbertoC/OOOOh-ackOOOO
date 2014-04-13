@@ -21,7 +21,8 @@
 		_nearby_markers = [],
 		_waypts = [],
 		_directionsService,
-		_directionsDisplay;
+		_directionsDisplay,
+		_stepDisplay;
 
 	function initializeGoogleMaps() {
 	    _map = new google.maps.Map(_mapCanvas, _mapOptions);
@@ -39,6 +40,9 @@
 	   	_directionsDisplay = new google.maps.DirectionsRenderer();
 	   	_directionsDisplay.setMap(_map);
 	   	_directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+
+	   	// Instantiate an info window to hold step text.
+  		_stepDisplay = new google.maps.InfoWindow();
 	}
 
 	function onPosition(position, force) {
@@ -133,6 +137,32 @@
 	  	});
 	  	_nearby_markers.push(marker);
 	  	//attachInstructionText(marker, myRoute.steps[i].instructions);
+	  	attachInfo(marker);
+	}
+
+	function attachInfo(marker) {
+		
+	  	google.maps.event.addListener(marker, 'click', function() {
+
+	  		var latLng = _position = new google.maps.LatLng(_carX, _carY);
+		  	var end = marker.position;
+		  	var request = {
+		    	origin:latLng,
+		    	destination:end,
+		    	waypoints: _waypts,
+	      		optimizeWaypoints: true,
+		    	travelMode: google.maps.TravelMode.DRIVING
+		  	};
+		  	_directionsService.route(request, function(result, status) {
+		    	if (status == google.maps.DirectionsStatus.OK) {
+		    		//alert("Rullo di tamburi...");
+		      		alert(result.routes[0].legs[0].distance.text + " - " + result.routes[0].legs[0].duration.text);
+		    	}
+		  	});
+ 			
+ 			stepDisplay.setContent(text);
+	    	stepDisplay.open(_map, marker);
+	  	});
 	}
 
 	function init() {
