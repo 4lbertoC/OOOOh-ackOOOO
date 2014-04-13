@@ -259,3 +259,30 @@ body {
 	font-size: 23px;
 	left: 13px;
 }
+
+.popup {
+}
+
+.popup > * {
+	display: inline-block;
+}
+
+.popup-0 {
+	width: 40px;
+	margin: 15px 5px;
+	position: absolute;
+}
+
+.popup-1 {
+	border-right: 1px solid #EDEDED;
+	border-left: 1px solid #EDEDED;
+	padding: 0 15px;
+	font-size: 25px;
+	margin-left: 58px;
+	margin-right: 16px;
+}
+
+.popup-2 {
+	color: red;
+	font-size: 55px;
+}

@@ -141,6 +141,12 @@
 	  	attachInfo(marker);
 	}
 
+	function generatePopupText(distance, duration) {
+		return '<div class="popup"><img src="images/elettrica-64.png" class="popup-0">' +
+			'<div class="popup-1">' + distance + '<br/>' + duration + '</div>' +
+			'<div class="popup-2"><span class="fa fa-angle-right"></div></div>'
+	}
+
 	function attachInfo(marker) {
 		
 	  	google.maps.event.addListener(marker, 'click', function() {
@@ -157,12 +163,12 @@
 		  	_directionsService.route(request, function(result, status) {
 		    	if (status == google.maps.DirectionsStatus.OK) {
 		    		//alert("Rullo di tamburi...");
-		      		alert(result.routes[0].legs[0].distance.text + " - " + result.routes[0].legs[0].duration.text);
+		      		var text = generatePopupText(result.routes[0].legs[0].distance.text, result.routes[0].legs[0].duration.text);
+
+		 			_stepDisplay.setContent(text);
+			    	_stepDisplay.open(_map, marker);
 		    	}
 		  	});
- 			
- 			stepDisplay.setContent(text);
-	    	stepDisplay.open(_map, marker);
 	  	});
 	}
 
