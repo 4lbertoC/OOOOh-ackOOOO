@@ -41,7 +41,7 @@
 	}
 
 	function onPosition(position, force) {
-		if(force || (+position.lng !== _carY || +position.lat !== _carX)) {
+		if((force !== 'success' && force) || (+position.lng !== _carY || +position.lat !== _carX)) {
 			$('.loading').fadeOut(1000, function() {
 					$('.loading').remove();
 				});
@@ -164,6 +164,7 @@
 	}
 
 	function search() {
+		_directionsDisplay.setMap(_map);
 		onSearch($('#search-text').val());
 		$('#reset-query').show();
 	}
@@ -190,9 +191,8 @@
 	}
 
 	function restart() {
-		// $.each(_nearby_markers, function(i) { _nearby_markers[i].setMap(null) });
-		// $.each(_markers, function(i) { _markers[i].setMap(null) });
-		// _directionsDisplay.setMap(null);
+		$.each(_markers, function(i) { _markers[i].setMap(null) });
+		_directionsDisplay.setMap(null);
 		$('#linguetta').hide();
 		$('#reset-query').hide();
 		$('body').removeClass('show-directions');
@@ -200,7 +200,7 @@
 			center: _position,
 			zoom: 15
 		});
-		// AudiHack.getPosition(onPosition, true);
+		AudiHack.getPosition(onPosition, true);
 	}
 
 	function center() {
