@@ -42,7 +42,9 @@
 
 	function onPosition(position) {
 		if(+position.lng !== _carY || +position.lat !== _carX) {
-			$('.loading').remove();
+			$('.loading').fadeOut(1000, function() {
+					$('.loading').remove();
+				});
 			$(_mapCanvas).css("visibility", "visible");
 			_carX = +position.lat;
 			_carY = +position.lng;
